@@ -7,13 +7,13 @@ import os
 class Solution(object):
     def __init__(self, pkg_name):
         root_fd = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
-        src_fd = os.path.join(root_fd, ('src/main/java/org/hfeng/oj/leet' +
+        src_fd = os.path.join(root_fd, ('src/main/java/org/hfeng/leet' +
                                           '/%s') % pkg_name)
         src_file = os.path.join(src_fd, "Solution.java")
-        test_fd = os.path.join(root_fd, ('src/test/java/org/hfeng/oj/leet' +
+        test_fd = os.path.join(root_fd, ('src/test/java/org/hfeng/leet' +
                                            '/%s') % pkg_name)
         test_file = os.path.join(test_fd, "SolutionTest.java")
-        pkg_loc = "package org.hfeng.oj.leet.%s;" % pkg_name
+        pkg_loc = "package org.hfeng.leet.%s;" % pkg_name
         self.src_fd = src_fd
         self.test_fd = test_fd
         self.src_file = src_file
