@@ -1,0 +1,7 @@
+* Reverse Integer
+  + reverse an integer, for example
+    #+begin_example
+      Input: 12345
+
+      Output: 54321
+    #+end_example
