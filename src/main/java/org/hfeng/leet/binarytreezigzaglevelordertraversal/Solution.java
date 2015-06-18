@@ -17,7 +17,7 @@ public class Solution {
         }
 
         if (level > result.size()) {
-            result.add(new ArrayList<Integer>());
+            result.add(new LinkedList<Integer>());
         }
 
         if (leftToRight) {
