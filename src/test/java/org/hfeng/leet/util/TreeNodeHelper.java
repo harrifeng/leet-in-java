@@ -1,5 +1,8 @@
 package org.hfeng.leet.util;
 
+import org.hamcrest.collection.IsIterableContainingInOrder;
+import org.junit.Assert;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +39,11 @@ public class TreeNodeHelper {
     }
 
     public static void assertEqualTree(TreeNode left, TreeNode right) {
-        assertEquals(preOrderTree(left), preOrderTree(right));
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // From                                                                                                                     //
+        // http://stackoverflow.com/questions/12495420/how-to-junit-test-that-two-liste-contain-the-same-elements-in-the-same-order //
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Assert.assertThat(preOrderTree(right), IsIterableContainingInOrder.contains(preOrderTree(left).toArray()));
     }
 
     public static List<Integer> preOrderTree(TreeNode root) {
@@ -51,11 +58,11 @@ public class TreeNodeHelper {
         }
         ret.add(root.val);
         if (root.left != null) {
-            preOrderTree(root.left);
+            preOrderSub(root.left, ret);
         }
 
         if (root.right != null) {
-            preOrderTree(root.right);
+            preOrderSub(root.right, ret);
         }
     }
 }
