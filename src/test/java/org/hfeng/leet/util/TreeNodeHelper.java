@@ -22,14 +22,14 @@ public class TreeNodeHelper {
         int count = 0;
         while (!queue.isEmpty()) {
             TreeNode cur = queue.poll();
-            if (++count < array.length) {
-                cur.left = array[count] == -1 ? null : new TreeNode(array[count]);
+            if (++count < array.length && array[count] != -1) {
+                cur.left = new TreeNode(array[count]);
                 queue.offer(cur.left);
             } else {
                 cur.left = null;
             }
-            if (++count < array.length) {
-                cur.right = array[count] == -1 ? null : new TreeNode(array[count]);
+            if (++count < array.length && array[count] != -1) {
+                cur.right = new TreeNode(array[count]);
                 queue.offer(cur.right);
             } else {
                 cur.right = null;

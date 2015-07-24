@@ -2,10 +2,7 @@ package org.hfeng.leet.symmetrictree;
 
 import org.hfeng.leet.util.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
@@ -17,17 +14,19 @@ public class Solution {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode head = queue.poll();
-            ret.add(head.val);
-            if (head.left != null) {
-                queue.add(head.left);
+            if (head == null) {
+                ret.add(-1);
+                continue;
+            } else {
+                ret.add(head.val);
             }
-            if (head.right != null) {
-                queue.add(head.right);
-            }
-        }
-        //System.out.println(ret);
+            queue.add(head.left);
+            queue.add(head.right);
 
-        return isOK(ret);
+        }
+        int len = Integer.highestOneBit(ret.size());
+        List<Integer> tt = ret.subList(0, len - 1);
+        return isOK(tt);
     }
 
     private boolean isOK(List<Integer> list) {
