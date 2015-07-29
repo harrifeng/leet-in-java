@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import static org.junit.Assert.*;
-
 public class SolutionTest {
     Solution solution;
 
@@ -22,13 +20,9 @@ public class SolutionTest {
 
     @Test
     public void testIsBalanced() throws Exception {
-        TreeNode l1 = TreeNodeHelper.createListFromArray(new int[]{1, 2, 5, 3, 4});
+        TreeNode l1 = TreeNodeHelper.createListFromArray(new int[]{1, 2, 5, 3, 4, -1, 6});
 
-        TreeNode e1 = TreeNodeHelper.createListFromArray(new int[]{1, -1, 2, -1, -1, -1, 3,
-                                                               -1, -1, -1, -1, -1, -1,
-                                                               -1, 4, -1, -1, -1, -1,
-                                                               -1, -1, -1, -1, -1, -1,
-                                                               -1, -1, -1, -1, -1, 5});
+          TreeNode e1 = TreeNodeHelper.createListFromArray(new int[]{1, -1, 2, -1, 3, -1, 4, -1, 5, -1, 6});
         solution.flatten(l1);
         TreeNodeHelper.assertEqualTree(e1, l1);
     }

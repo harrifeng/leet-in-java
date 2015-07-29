@@ -14,6 +14,7 @@ public class Solution {
         TreeNode tmp = root;
         TreeNode tmpRight = root.right;
         root.right = flat(root.left);
+        root.left = null;
         while (root.right != null) {
             root = root.right;
         }
