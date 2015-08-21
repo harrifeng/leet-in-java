@@ -1,33 +1,34 @@
 package org.hfeng.leet.anagrams;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class Solution {
     public List<String> anagrams(String[] strs) {
-        List<String> ret = new ArrayList<String>();
-
-        Map<String, String> map = new HashMap<String, String>();
-
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        List<String> ret = new LinkedList<>();
+        int times = 0;
         for (int i = 0; i < strs.length; i++) {
-            if (map.containsKey(sortChars(strs[i]))) {
+            if (map.containsKey(stringHash(strs[i]))) {
+                if (times == 0) {
+                    ret.add(map.get(stringHash(strs[i])));
+                    times++;
+                }
                 ret.add(strs[i]);
             } else {
-                map.put(sortChars(strs[i]), strs[i]);
-            }
-        }
-
-        for (int i = 0; i < ret.size(); i++) {
-            if (map.containsKey(sortChars(ret.get(i)))) {
-                ret.add(map.get(sortChars(ret.get(i))));
-                map.remove(sortChars(ret.get(i)));
+                map.put(stringHash(strs[i]), strs[i]);
             }
         }
         return ret;
     }
 
-    private String sortChars(String str) {
-        char[] content = str.toCharArray();
-        Arrays.sort(content);
-        return new String(content);
+    private int stringHash(String str) {
+        int ret = 0;
+        for (int i = 0; i < str.length(); i++) {
+            ret += (str.charAt(i) - 'a') * 10;
+        }
+        return ret;
     }
 }
