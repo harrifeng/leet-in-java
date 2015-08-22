@@ -1,31 +1,27 @@
 package org.hfeng.leet.binarytreepreordertraversal;
 
-import java.util.*;
+import org.hfeng.leet.util.*;
 
-import org.hfeng.leet.util.TreeNode;
+import java.util.*;
 
 public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        List<Integer> ret = new ArrayList<Integer>();
+        List<Integer> retV = new ArrayList<>();
+        preorder(root, retV);
 
+        return retV;
+    }
+
+    private void preorder(TreeNode root, List<Integer> ret) {
         if (root == null) {
-            return ret;
+            return;
         }
-
-        stack.push(root);
-
-        while (!stack.empty()) {
-            TreeNode now = stack.pop();
-            ret.add(now.val);
-            // use Stack, please be aware that you should use right first!
-            if (now.right != null) {
-                stack.push(now.right);
-            }
-            if (now.left != null) {
-                stack.push(now.left);
-            }
+        ret.add(root.val);
+        if (root.left != null) {
+            preorder(root.left, ret);
         }
-        return ret;
+        if (root.right != null) {
+            preorder(root.right, ret);
+        }
     }
 }
