@@ -1,35 +1,35 @@
 package org.hfeng.leet.binarytreelevelordertraversaltwo;
 
-import org.hfeng.leet.util.TreeNode;
+import org.hfeng.leet.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-
         List<List<Integer>> ret = new ArrayList<List<Integer>>();
+
         if (root == null) {
             return ret;
         }
-        List<Integer> one = new ArrayList<Integer>();
-        one.add(root.val);
 
-        List<List<Integer>> leftRet = levelOrderBottom(root.left);
-        List<List<Integer>> rightRet = levelOrderBottom(root.right);
+        List<List<Integer>> left = levelOrderBottom(root.left);
+        List<List<Integer>> right = levelOrderBottom(root.right);
 
-        int len = Math.max(leftRet.size(), rightRet.size());
-        for (int i = leftRet.size() - len, j = rightRet.size() - len; (i < len && j < len); i++, j++) {
-            List<Integer> zero = new ArrayList<Integer>();
-            if (i >= 0) {
-                zero.addAll(leftRet.get(i));
+        int maxLen = Math.max(left.size(), right.size());
+
+        for (int i = 0; i < maxLen; i++) {
+            List<Integer> zero = new ArrayList<>();
+            if (left.size() - maxLen + i >= 0) {
+                zero.addAll(left.get(left.size() - maxLen + i));
             }
-            if (j >= 0) {
-                zero.addAll(rightRet.get(j));
+            if (right.size() - maxLen + i >= 0) {
+                zero.addAll(right.get(right.size() - maxLen + i));
             }
             ret.add(zero);
         }
 
+        List<Integer> one = new ArrayList<>();
+        one.add(root.val);
         ret.add(one);
         return ret;
     }
