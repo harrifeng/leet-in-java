@@ -1,21 +1,19 @@
 package org.hfeng.leet.balancedbinarytree;
 
-import org.hfeng.leet.util.TreeNode;
-import java.util.*;
-
+import org.hfeng.leet.util.*;
 public class Solution {
     public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;
         }
-        return Math.abs(depth(root.left) - depth(root.right)) <= 1
-            && isBalanced(root.left) && isBalanced(root.right);
+        return isBalanced(root.left) && isBalanced(root.right)
+                && Math.abs(height(root.left) - height(root.right)) <= 1;
     }
 
-    private int depth(TreeNode root) {
+    private int height(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        return Math.max(depth(root.left), depth(root.right)) + 1;
+        return Math.max(height(root.left), height(root.right)) + 1;
     }
 }
