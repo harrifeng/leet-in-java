@@ -11,3 +11,6 @@ gradle-app.setting
 leet-in-java.iml
 leet-in-java.ipr
 leet-in-java.iws
+
+# Intellij build folder
+out/
