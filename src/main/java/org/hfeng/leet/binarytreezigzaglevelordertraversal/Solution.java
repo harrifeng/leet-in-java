@@ -6,27 +6,40 @@ import org.hfeng.leet.util.*;
 
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ret = new ArrayList<List<Integer>>();
-        levelTravel(root, 1, ret, true);
-        return ret;
+        List<List<Integer>> retV = new ArrayList<>();
+        retV = zigzag(root);
+        for (int i = 0; i < retV.size(); i++) {
+            if (i % 2 == 1) {
+                Collections.reverse(retV.get(i));
+            }
+        }
+        return retV;
     }
 
-    private void levelTravel(TreeNode root, int level, List<List<Integer>> result, boolean leftToRight) {
+    private List<List<Integer>> zigzag(TreeNode root) {
+        List<List<Integer>> ret = new ArrayList<>();
         if (root == null) {
-            return;
+            return ret;
         }
+        List<Integer> one = new ArrayList<>();
+        one.add(root.val);
+        ret.add(one);
 
-        if (level > result.size()) {
-            result.add(new LinkedList<Integer>());
+        List<List<Integer>> left = zigzag(root.left);
+        List<List<Integer>> right = zigzag(root.right);
+
+        int maxLen = Math.max(left.size(), right.size());
+
+        for (int i = 0; i < maxLen; i++) {
+            List<Integer> zero = new LinkedList<>();
+            if (left.size() > i) {
+                zero.addAll(left.get(i));
+            }
+            if (right.size() > i) {
+                zero.addAll(right.get(i));
+            }
+            ret.add(zero);
         }
-
-        if (leftToRight) {
-            result.get(level - 1).add(root.val);
-        } else {
-            result.get(level - 1).add(0, root.val);
-        }
-
-        levelTravel(root.left, level + 1, result, !leftToRight);
-        levelTravel(root.right, level + 1, result, !leftToRight);
+        return ret;
     }
 }
