@@ -1,34 +1,62 @@
 package org.hfeng.leet.binarytreelevelordertraversal;
 
-import org.hfeng.leet.util.TreeNode;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.hfeng.leet.util.*;
 
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-
+        Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> ret = new ArrayList<List<Integer>>();
         if (root == null) {
             return ret;
         }
-        List<Integer> one = new ArrayList<Integer>();
-        one.add(root.val);
-        ret.add(one);
 
-        List<List<Integer>> leftRet = levelOrder(root.left);
-        List<List<Integer>> rightRet = levelOrder(root.right);
+        queue.add(root);
+        List<Integer> nowList = new ArrayList<>();
+        nowList.add(root.val);
+        int nowLen = 1;
+        int nextLen = 0;
+        if (root.left != null) {
+            nextLen++;
+        }
+        if (root.right != null) {
+            nextLen++;
+        }
 
-        int len = Math.max(leftRet.size(), rightRet.size());
-        for (int i = 0; i < len; i++) {
-            List<Integer> zero = new ArrayList<Integer>();
-            if (leftRet.size() > i) {
-                zero.addAll(leftRet.get(i));
+        while (!queue.isEmpty()) {
+            TreeNode now = queue.remove();
+            if (nowList.size() == nowLen) {
+                ret.add(nowList);
+                nowList = new ArrayList<>();
+                if (nextLen == 0) {
+                    return ret;
+                }
+                nowLen = nextLen;
+                nextLen = 0;
             }
-            if (rightRet.size() > i) {
-                zero.addAll(rightRet.get(i));
+            if (now.left != null) {
+                queue.add(now.left);
+                nowList.add(now.left.val);
+                if (now.left.left != null) {
+                    nextLen++;
+                }
+                if (now.left.right != null) {
+                    nextLen++;
+                }
             }
-            ret.add(zero);
+
+            if (now.right != null) {
+                queue.add(now.right);
+                nowList.add(now.right.val);
+                if (now.right.left != null) {
+                    nextLen++;
+                }
+                if (now.right.right != null) {
+                    nextLen++;
+                }
+            }
+
         }
         return ret;
     }
