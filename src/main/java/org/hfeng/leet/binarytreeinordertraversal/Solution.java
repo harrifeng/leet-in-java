@@ -1,37 +1,25 @@
 package org.hfeng.leet.binarytreeinordertraversal;
 
+import org.hfeng.leet.util.*;
 import java.util.*;
-
-import org.hfeng.leet.util.TreeNode;
-
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> ret = new ArrayList<Integer>();
+        List<Integer> retV = new ArrayList<>();
+        inorder(root, retV);
+        return retV;
+    }
+
+    private void inorder(TreeNode root, List<Integer> ret) {
         if (root == null) {
-            return ret;
+            return;
         }
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-
-        TreeNode tmp = root;
-
-        while (!stack.empty() || tmp != null) {
-            if (tmp != null) {
-                stack.push(tmp);
-                tmp = tmp.left;
-            } else {
-                /////////////////////////////////////////////////////////////
-                // when tmp is null (and stack is not null), it means that //
-                // 'one part' is finished! in recursive solution, it will  //
-                // be the root == null and function will return to 'upper  //
-                // level', in our non-recursive solution 'upper level'     //
-                // correspond to stack.pop().                              //
-                /////////////////////////////////////////////////////////////
-                tmp = stack.pop();
-                ret.add(tmp.val);
-                tmp = tmp.right;
-            }
+        if (root.left != null) {
+            inorder(root.left, ret);
         }
-        return ret;
+        ret.add(root.val);
+        if (root.right != null) {
+            inorder(root.right, ret);
+        }
     }
 }
