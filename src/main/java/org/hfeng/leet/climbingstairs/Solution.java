@@ -1,5 +1,6 @@
 package org.hfeng.leet.climbingstairs;
-class Solution{
+
+public class Solution{
     public int climbStairs(int n) {
         return fab(n);
     }
