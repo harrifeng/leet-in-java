@@ -9,10 +9,14 @@ public class Solution {
             RandomListNode oldNext = head.next;
             head.next = new RandomListNode(head.label);
             head.next.next = oldNext;
-            //head.next.random = head.random;
             head = oldNext;
         }
         head = tmp;
+
+        // two points here:
+        // 1. head.random is not null, so that you can use head.random.next,
+        //    already remember to check null if tow '.' show
+        // 2. we should link the random before break the old list
         while (head != null) {
             head.next.random = head.random == null ? null : head.random.next;
             head = head.next.next;
@@ -26,7 +30,6 @@ public class Solution {
             tmp.next = tmp.next.next;
             tmp = tmp.next;
         }
-        start.next = null;
         return ret.next;
     }
 }
