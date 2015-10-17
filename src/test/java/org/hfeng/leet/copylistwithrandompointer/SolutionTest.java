@@ -20,7 +20,7 @@ public class SolutionTest {
     }
 
     @Test
-    public void testDeleteDuplicates() throws Exception {
+    public void testCopyRandomList() throws Exception {
         RandomListNode h1 = RandomListNodeHelper.createListFramArray(new int[] {1, 2, 3, 4});
         RandomListNode e1 = h1;
         RandomListNodeHelper.assertEqualList(e1, solution.copyRandomList(h1));

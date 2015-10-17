@@ -1,4 +1,16 @@
 * Copy List with Random Pointer
   + A linked list is given such that each node contains an additional random
     pointer which could point to any node in the list or null.
+    #+begin_src java
+      public class RandomListNode {
+          public int label;
+          public RandomListNode next;
+          public RandomListNode random;
+          public RandomListNode(int x) {
+              this.label = x;
+              next = null;
+              random = null;
+          }
+      }
+    #+end_src
   + Return a deep copy of the list
