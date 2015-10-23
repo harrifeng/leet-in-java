@@ -6,6 +6,7 @@ public class Solution {
         int sum = 0;
         int startPoint = 0;
         for (int i = 0; i < gas.length; i++) {
+            // leftGas is another sum(leftGas never return to zero)
             leftGas += gas[i] - cost[i];
             sum += gas[i] - cost[i];
             // sum should be bigger than Zero at the very first round.
@@ -15,6 +16,8 @@ public class Solution {
                 sum = 0;
             }
         }
+        // leftGas is not minus, it means all gases are more than all
+        // costs, there at least one solution.
         return leftGas >= 0 ? startPoint : -1;
     }
 }
