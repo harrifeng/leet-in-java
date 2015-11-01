@@ -1,22 +1,25 @@
 package org.hfeng.leet.graycode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
     public List<Integer> grayCode(int n) {
+        List<Integer> ret = new ArrayList<Integer>();
+
         if (n == 0) {
-            List<Integer> ret = new ArrayList<Integer>();
             ret.add(0);
             return ret;
-        }
+        } else {
+            List<Integer> half = grayCode(n - 1);
+            for (int i = 0; i < half.size(); i++) {
+                ret.add(half.get(i));
+            }
 
-        List<Integer> ret = grayCode(n - 1);
-        int adder = 1 << (n - 1);
-        int orgLen = ret.size();
-        for (int i = orgLen - 1; i >= 0; i--) {
-            ret.add(ret.get(i) + adder);
+            for (int i = half.size() - 1; i >= 0; i--) {
+                int val = (1 << (n - 1)) + half.get(i);
+                ret.add(val);
+            }
+            return ret;
         }
-        return ret;
     }
 }
