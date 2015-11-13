@@ -6,6 +6,8 @@ public class Solution {
     public int largestRectangleArea(int[] height) {
         Stack<Integer> stack = new Stack<Integer>();
         int ret = 0;
+        // To be able to get one more element more to take last
+        // element into consideration
         int[] anotherHeight = new int[height.length + 1];
         System.arraycopy(height, 0, anotherHeight, 0, height.length);
         anotherHeight[height.length] = 0;
@@ -25,3 +27,25 @@ public class Solution {
         return ret;
     }
 }
+
+///////////////////////////////////////////////////////////////////////
+//         +---+                                                     //
+//         |   |                                                     //
+//     +---+---+                                                     //
+//     |   |   |                                                     //
+//     +---+---+                                                     //
+//     |   |   |                                                     //
+//     +---+---+                                                     //
+//     |   |   |                                                     //
+//     +---+---+                                                     //
+//     |   |   |                                                     //
+// +---+---++--+                                                     //
+// |   |   |   |                                                     //
+// +---+---+---+                                                     //
+//   1   5   6                                                       //
+//                                                                   //
+// Find each increasing group and counting the size in reverse order //
+// => 6 * 1                                                          //
+// => 5 * 2 ==> winner                                               //
+// => 1 * 3                                                          //
+///////////////////////////////////////////////////////////////////////
