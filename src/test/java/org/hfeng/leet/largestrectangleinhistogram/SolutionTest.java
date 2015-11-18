@@ -20,6 +20,7 @@ public class SolutionTest {
 
     @Test
     public void testLargestRectangleArea() throws Exception {
+        assertEquals(12, solution.largestRectangleArea(new int[]{5, 6, 4}));
         assertEquals(10, solution.largestRectangleArea(new int[]{2, 1, 5, 6, 2, 3}));
         assertEquals(12, solution.largestRectangleArea(new int[]{2, 1, 5, 6, 2, 6, 8}));
         assertEquals(16, solution.largestRectangleArea(new int[]{2, 3, 5, 6, 2, 1, 8, 14}));
