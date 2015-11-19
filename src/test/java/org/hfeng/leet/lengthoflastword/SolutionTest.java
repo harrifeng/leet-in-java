@@ -26,5 +26,8 @@ public class SolutionTest {
         String s2 = "a b     ";
         int e2 = 1;
         assertEquals(e2, solution.lengthOfLastWord(s2));
+        String s3 = " ";
+        int e3 = 0;
+        assertEquals(e3, solution.lengthOfLastWord(s3));
     }
 }
