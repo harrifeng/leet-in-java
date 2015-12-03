@@ -1,23 +1,27 @@
 package org.hfeng.leet.linkedlistcycletwo;
 
-import org.hfeng.leet.util.ListNode;
+import org.hfeng.leet.util.*;
 
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        ListNode fast = head;
+        if (head == null || head.next == null) {
+            return null;
+        }
         ListNode slow = head;
-        ListNode newSlow = head;
+        ListNode fast = head;
+        ListNode slow2 = head;
 
-        while (fast != null && fast.next != null) {
+        while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
 
             if (fast == slow) {
-                while (newSlow != slow) {
-                    newSlow = newSlow.next;
+                // This is the key, you should NOT use while(true)
+                while (slow2 != slow) {
+                    slow2 = slow2.next;
                     slow = slow.next;
                 }
-                return newSlow;
+                return slow;
             }
         }
         return null;
