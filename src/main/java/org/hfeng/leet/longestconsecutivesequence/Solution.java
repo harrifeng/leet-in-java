@@ -23,6 +23,10 @@ public class Solution {
                 sum += map.get(num[i] + 1);
             }
 
+            // ONLY update the shoulder of the sequence!!
+            // What we want it the max value, we do not care
+            // about the internal value.
+
             if (map.containsKey(num[i] - 1)) {
                 map.put(num[i] - map.get(num[i] - 1), sum);
             }
