@@ -28,9 +28,9 @@ public class Solution {
         int partA = Math.min(A.length, n / 2);
         int partB = n - partA;
         if (A[partA - 1] < B[partB - 1]) {
-            return findNth(Arrays.copyOfRange(A, 0, partA), B, n - partA);
+            return findNth(Arrays.copyOfRange(A, partA, A.length), B, n - partA);
         } else {
-            return findNth(A, Arrays.copyOfRange(B, 0, partB), n - partB);
+            return findNth(A, Arrays.copyOfRange(B, partB, B.length), n - partB);
         }
     }
 }

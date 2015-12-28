@@ -29,6 +29,12 @@ public class SolutionTest {
         int[] b = {1, 1};
         final float delta = 0.0001F;
         assertEquals(1.0, solution.findMedianSortedArrays(a, b), delta);
+
+        int[] a = {1, 2};
+        int[] b = {1, 2};
+        final float delta = 0.0001F;
+        assertEquals(1.5, solution.findMedianSortedArrays(a, b), delta);
+
     }
 
 }
