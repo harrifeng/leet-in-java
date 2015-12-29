@@ -30,10 +30,9 @@ public class SolutionTest {
         final float delta = 0.0001F;
         assertEquals(1.0, solution.findMedianSortedArrays(a, b), delta);
 
-        int[] a = {1, 2};
-        int[] b = {1, 2};
-        final float delta = 0.0001F;
-        assertEquals(1.5, solution.findMedianSortedArrays(a, b), delta);
+        int[] a2 = {1, 2};
+        int[] b2 = {1, 2};
+        assertEquals(1.5, solution.findMedianSortedArrays(a2, b2), delta);
 
     }
 
