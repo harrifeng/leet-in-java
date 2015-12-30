@@ -1,14 +1,8 @@
 package org.hfeng.leet.util;
 
-
 public class Test {
     public static void main(String[] args) {
-        int ii = Character.digit('1', 10);
-
-        System.out.println(ii);
-    }
-
-    public void removeStr(String s) {
-
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Integer.MIN_VALUE);
     }
 }
